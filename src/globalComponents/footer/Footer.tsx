@@ -3,55 +3,41 @@ import {
   FacebookLogo,
   Globe,
   InstagramLogo,
-  LinkedinLogo,
   WhatsappLogo,
-  YoutubeLogo,
 } from 'phosphor-react'
 import React from 'react'
 import { GlobalContext } from '../../context/globalContext.tsx'
 
 function Footer() {
-  const { politic } = React.useContext(GlobalContext)
+  const { restaurant } = React.useContext(GlobalContext)
 
-  return politic ? (
+  return restaurant ? (
     <Styles.Footer>
       <Styles.Content>
         <Styles.SocialMediaWrapper>
           <h3>Redes Sociais</h3>
 
           <Styles.SocialMediaIcons>
-            {politic.whatsappCommunity && (
-              <a target="_blank" href={`${politic.whatsappCommunity}`}>
+            {restaurant.whatsappCommunity && (
+              <a target="_blank" href={`${restaurant.whatsappCommunity}`}>
                 <WhatsappLogo size={32} color={'#65B741'} weight="fill" />
               </a>
             )}
 
-            {politic.facebook && (
-              <a target="_blank" href={`${politic.facebook}`}>
+            {restaurant.facebook && (
+              <a target="_blank" href={`${restaurant.facebook}`}>
                 <FacebookLogo size={32} weight="light" />
               </a>
             )}
 
-            {politic.linkedin && (
-              <a target="_blank" href={`${politic.linkedin}`}>
-                <LinkedinLogo size={32} weight="light" />
-              </a>
-            )}
-
-            {politic.youtube && (
-              <a target="_blank" href={`${politic.youtube}`}>
-                <YoutubeLogo size={32} weight="light" />
-              </a>
-            )}
-
-            {politic.instagram && (
-              <a target="_blank" href={`${politic.instagram}`}>
+            {restaurant.instagram && (
+              <a target="_blank" href={`${restaurant.instagram}`}>
                 <InstagramLogo size={32} weight="light" />
               </a>
             )}
 
-            {politic.siteInstitucional && (
-              <a target="_blank" href={`${politic.siteInstitucional}`}>
+            {restaurant.siteInstitucional && (
+              <a target="_blank" href={`${restaurant.siteInstitucional}`}>
                 <Globe size={32} weight="light" />
               </a>
             )}
@@ -65,8 +51,8 @@ function Footer() {
         <Styles.Contact>
           <h3>Contate-nos!</h3>
 
-          <span>{politic.email}</span>
-          <span>{politic.siteInstitucional}</span>
+          <span>{restaurant.email}</span>
+          <span>{restaurant.siteInstitucional}</span>
         </Styles.Contact>
       </Styles.Content>
     </Styles.Footer>

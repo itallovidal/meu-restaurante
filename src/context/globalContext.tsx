@@ -1,17 +1,17 @@
 import React, { ReactNode } from 'react'
 import { postUser } from '../utils/API.ts'
 import { NavigateFunction, useNavigate } from 'react-router-dom'
-import { IPolitic, IUser } from '../@types/interfaces'
+import { IRestaurant, IUser } from '../@types/interfaces'
 import { IAddressForm, IOverviewForm } from '../utils/schemas.ts'
 
 type TPageState = 'address' | 'overview' | 'finish'
 
 export interface IGlobalContext {
-  politic: IPolitic
+  restaurant: IRestaurant
   finishOverview: (data: IOverviewForm) => void
   finishForm: (data: IAddressForm) => void
   concludeForm: () => Promise<boolean>
-  setPoliticData: (data: IPolitic) => void
+  setRestaurant: (data: IRestaurant) => void
   userData: IUser
   handleNavigation: (a: TPageState) => void
   navigate: NavigateFunction
@@ -25,22 +25,24 @@ interface GlobalContextProps {
 function GlobalContextProvider({ children }: GlobalContextProps) {
   const navigate = useNavigate()
 
-  const [politic, setPolitic] = React.useState<IPolitic>({} as IPolitic)
+  const [restaurant, setRestaurantData] = React.useState<IRestaurant>(
+    {} as IRestaurant,
+  )
   const [userData, setUserData] = React.useState<IUser>({} as IUser)
 
-  function setPoliticData(data: IPolitic) {
-    setPolitic(data)
+  function setRestaurant(data: IRestaurant) {
+    setRestaurantData(data)
   }
 
   function handleNavigation(state: TPageState) {
     if (state !== 'overview') {
-      navigate(`/${politic.id}/${state}`, {
+      navigate(`/${restaurant.id}/${state}`, {
         state,
       })
       return
     }
 
-    navigate(`/${politic.id}`, {})
+    navigate(`/${restaurant.id}`, {})
   }
 
   function finishOverview(data: IOverviewForm) {
@@ -62,8 +64,8 @@ function GlobalContextProvider({ children }: GlobalContextProps) {
 
   async function concludeForm() {
     console.log(userData)
-    if (politic) {
-      const response = await postUser(userData, politic.collection_id)
+    if (restaurant) {
+      const response = await postUser(userData, restaurant.collection_id)
       return response.status === 201
     }
 
@@ -75,12 +77,12 @@ function GlobalContextProvider({ children }: GlobalContextProps) {
       value={{
         navigate,
         handleNavigation,
-        politic,
+        restaurant,
         userData,
         finishOverview,
         finishForm,
         concludeForm,
-        setPoliticData,
+        setRestaurant,
       }}
     >
       {children}

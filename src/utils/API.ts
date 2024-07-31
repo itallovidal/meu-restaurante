@@ -1,4 +1,4 @@
-import { IPolitic, IUser } from '../@types/interfaces'
+import { IRestaurant, IUser } from '../@types/interfaces'
 import { api } from './axiosConfig.ts'
 import { AxiosError } from 'axios'
 
@@ -11,7 +11,7 @@ export async function postUser(data: IUser, collection_id: string) {
   })
 }
 
-export async function getPolitic(id: string): Promise<IPolitic> {
+export async function getRestaurant(id: string): Promise<IRestaurant> {
   try {
     const { data } = await api.get(`/contractor/${id}`)
     return data

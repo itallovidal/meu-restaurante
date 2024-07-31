@@ -7,7 +7,7 @@ export interface IUser extends IOverviewForm {
 
 declare module 'react-input-mask'
 
-export interface IPolitic {
+export interface IRestaurant {
   nome: string
   profile_image: string
   id: string
@@ -15,8 +15,6 @@ export interface IPolitic {
   email: string
   siteInstitucional: string | null
   facebook: string | null
-  linkedin: string | null
-  youtube: string | null
   instagram: string | null
   whatsappCommunity: string | null
   mensagem_sucesso: string

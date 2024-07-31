@@ -5,9 +5,7 @@ import {
   FacebookLogo,
   Globe,
   InstagramLogo,
-  LinkedinLogo,
   WhatsappLogo,
-  YoutubeLogo,
 } from 'phosphor-react'
 import loadingGif from '../../../assets/loadingSend.gif'
 import { useParams } from 'react-router-dom'
@@ -15,7 +13,7 @@ import { useParams } from 'react-router-dom'
 function Conclusion() {
   const [loading, setLoading] = React.useState(true)
   const [error, setError] = React.useState(false)
-  const { concludeForm, politic, userData, navigate } =
+  const { concludeForm, restaurant, userData, navigate } =
     React.useContext(GlobalContext)
 
   const { id } = useParams()
@@ -25,8 +23,8 @@ function Conclusion() {
       setLoading(true)
       await concludeForm()
       setTimeout(function () {
-        if (politic.whatsappCommunity) {
-          window.location.href = politic.whatsappCommunity
+        if (restaurant.whatsappCommunity) {
+          window.location.href = restaurant.whatsappCommunity
         }
       }, 5000)
     } catch (e) {
@@ -53,44 +51,32 @@ function Conclusion() {
     <Styles.ConclusionWrapper>
       <p>Sucesso!!</p>
 
-      <p>{politic.mensagem_sucesso}</p>
+      <p>{restaurant.mensagem_sucesso}</p>
 
       <Styles.Socials>
-        {politic.whatsappCommunity && (
+        {restaurant.whatsappCommunity && (
           <>
             <h3> Iremos lhe enviar para o whatsapp já já.</h3>
-            <a target="_blank" href={`${politic.whatsappCommunity}`}>
+            <a target="_blank" href={`${restaurant.whatsappCommunity}`}>
               <WhatsappLogo size={32} weight="light" />
             </a>
           </>
         )}
 
-        {politic.facebook && (
-          <a target="_blank" href={`${politic.facebook}`}>
+        {restaurant.facebook && (
+          <a target="_blank" href={`${restaurant.facebook}`}>
             <FacebookLogo size={32} weight="light" />
           </a>
         )}
 
-        {politic.linkedin && (
-          <a target="_blank" href={`${politic.linkedin}`}>
-            <LinkedinLogo size={32} weight="light" />
-          </a>
-        )}
-
-        {politic.youtube && (
-          <a target="_blank" href={`${politic.youtube}`}>
-            <YoutubeLogo size={32} weight="light" />
-          </a>
-        )}
-
-        {politic.instagram && (
-          <a target="_blank" href={`${politic.instagram}`}>
+        {restaurant.instagram && (
+          <a target="_blank" href={`${restaurant.instagram}`}>
             <InstagramLogo size={32} weight="light" />
           </a>
         )}
 
-        {politic.siteInstitucional && (
-          <a target="_blank" href={`${politic.siteInstitucional}`}>
+        {restaurant.siteInstitucional && (
+          <a target="_blank" href={`${restaurant.siteInstitucional}`}>
             <Globe size={32} weight="light" />
           </a>
         )}

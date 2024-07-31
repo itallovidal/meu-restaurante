@@ -3,7 +3,7 @@ import { Outlet, useLocation, useParams } from 'react-router-dom'
 import { GlobalContext } from '../../context/globalContext.tsx'
 import React from 'react'
 import Footer from '../../globalComponents/footer/Footer.tsx'
-import { getPolitic } from '../../utils/API.ts'
+import { getRestaurant } from '../../utils/API.ts'
 import ErrorPage from '../notFound/errorPage.tsx'
 import Loading from '../../globalComponents/loading/loading.tsx'
 import placeholder from '../../assets/profilePicturePlaceholder.jpg'
@@ -11,14 +11,14 @@ import placeholder from '../../assets/profilePicturePlaceholder.jpg'
 function Registration() {
   const { id } = useParams()
   const { state } = useLocation()
-  const { politic, setPoliticData } = React.useContext(GlobalContext)
+  const { restaurant, setRestaurant } = React.useContext(GlobalContext)
   const [error, setError] = React.useState<boolean>(false)
 
   React.useEffect(() => {
     if (id) {
-      getPolitic(id)
+      getRestaurant(id)
         .then((data) => {
-          setPoliticData(data)
+          setRestaurant(data)
         })
         .catch((e) => {
           console.log(e)
@@ -48,19 +48,23 @@ function Registration() {
             <span>Agradecimento</span>
           </Styles.FormStatus>
 
-          {politic.id ? <Outlet /> : <Loading />}
+          {restaurant.id ? <Outlet /> : <Loading />}
         </Styles.FormWrapper>
         <Styles.BannerWrapper>
           <picture>
             <img
-              className={politic.profile_image ? '' : 'loading'}
-              src={politic.profile_image ? politic.profile_image : placeholder}
+              className={restaurant.profile_image ? '' : 'loading'}
+              src={
+                restaurant.profile_image
+                  ? restaurant.profile_image
+                  : placeholder
+              }
               alt=""
             />
           </picture>
 
           <label htmlFor="">
-            {politic.nome ? politic.nome : 'carregando..'}
+            {restaurant.nome ? restaurant.nome : 'carregando..'}
           </label>
         </Styles.BannerWrapper>
       </Styles.Content>
