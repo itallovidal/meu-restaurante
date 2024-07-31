@@ -18,4 +18,5 @@ export interface IRestaurant {
   instagram: string | null
   whatsappCommunity: string | null
   mensagem_sucesso: string
+  telefone: string
 }

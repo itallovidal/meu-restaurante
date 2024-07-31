@@ -42,17 +42,17 @@ function Footer() {
               </a>
             )}
           </Styles.SocialMediaIcons>
-
-          {/* <picture> */}
-          {/*    /!*<img src={voteIcon} alt=""/>*!/ */}
-          {/* </picture> */}
         </Styles.SocialMediaWrapper>
 
         <Styles.Contact>
           <h3>Contate-nos!</h3>
+          <span>{restaurant.telefone}</span>
 
-          <span>{restaurant.email}</span>
-          <span>{restaurant.siteInstitucional}</span>
+          {restaurant.email && <span>{restaurant.email}</span>}
+
+          {restaurant.siteInstitucional && (
+            <span>{restaurant.siteInstitucional}</span>
+          )}
         </Styles.Contact>
       </Styles.Content>
     </Styles.Footer>
