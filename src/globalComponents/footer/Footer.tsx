@@ -1,10 +1,5 @@
 import * as Styles from './footer.styled.ts'
-import {
-  FacebookLogo,
-  Globe,
-  InstagramLogo,
-  WhatsappLogo,
-} from 'phosphor-react'
+import { FacebookLogo, InstagramLogo, WhatsappLogo } from 'phosphor-react'
 import React from 'react'
 import { GlobalContext } from '../../context/globalContext.tsx'
 
@@ -31,14 +26,11 @@ function Footer() {
             )}
 
             {restaurant.instagram && (
-              <a target="_blank" href={`${restaurant.instagram}`}>
+              <a
+                target="_blank"
+                href={`https://www.instagram.com/${restaurant.instagram}/`}
+              >
                 <InstagramLogo size={32} weight="light" />
-              </a>
-            )}
-
-            {restaurant.siteInstitucional && (
-              <a target="_blank" href={`${restaurant.siteInstitucional}`}>
-                <Globe size={32} weight="light" />
               </a>
             )}
           </Styles.SocialMediaIcons>
